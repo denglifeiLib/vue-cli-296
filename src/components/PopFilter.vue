@@ -20,11 +20,14 @@
                         <button 
                             v-for="(btn,j) in item.list" 
                             :key="j" 
-                            :class="['btn', (btn.value === (value[item.name]||'')) ?'blue':'grey']" 
+                            :class="['btn', (btn.value === (newVal[item.name]||'')) ?'blue':'grey']" 
                             @click="saixuan(item.name, btn.value)">{{btn.label}}</button>
                     </div>
                 </div>
-                <button class="btn block white" v-if="showPop" @click="showPop=false">取消</button>
+                <div class="flex_box">
+                    <button class="btn block plain_grey bd" v-if="showPop" @click="cancel">取消</button>
+                    <button class="btn block plain_blue bd" v-if="showPop" @click="confirm" >确定</button>
+                </div>
             </div>
         </PopWrap>  
     </div>
@@ -36,7 +39,8 @@ export default {
     name: 'test',
     data() {
         return {
-            showPop: false
+            showPop: false,
+            newVal: {}
         }
     },
     props: {
@@ -61,21 +65,29 @@ export default {
             }
         }
     },
-    created() {},
+    created() {
+        this.newVal = {...this.value}
+    },
     computed: {
         hasActive() {
             return Object.keys(this.value).filter(item=>this.value[item]).length
+        },
+        initVal() {
+            return {...this.value}
         }
     },
     methods: {
        saixuan(name, value) {
-           this.showPop = false;
-           let obj = {}
-           obj[name] = value
-           this.$emit('input', {
-               ...this.value,
-               ...obj
-           })
+           this.newVal[name] = value;
+       },
+       confirm() {
+            this.$emit('input', {...this.newVal});
+            this.showPop=false
+       },
+       cancel() {
+           this.$emit('input', {...this.initVal});
+           this.newVal = {...this.initVal};
+           this.showPop=false
        }
     },
     components: {PopWrap}
@@ -128,11 +140,13 @@ export default {
                 }
             }
             .block{
-                margin-bottom: -42px;
-                height: 66px;
-                color: #121732;
+                margin: 0 10px -15px;
+                height: 48px;
+                // color: #121732;
                 font-size: 16px;
-                border-top: solid 1px #F3F3F3;
+                &.plain_grey{
+                    border-color: #666B73;
+                }
             }
         }
         

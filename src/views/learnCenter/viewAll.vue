@@ -52,6 +52,7 @@ export default {
             },
             multiFilter: {
                 classType: '',
+                status: '',
                 price: ''
             },
             guessList: [
@@ -117,6 +118,7 @@ export default {
             multiFilterItems: [
                 {
                     title: '状态',
+                    name: 'status',
                     list: [
                         {
                             label: '全部',
@@ -135,6 +137,7 @@ export default {
                     ]
                 }, {
                     title: '类目',
+                    name: 'classType',
                     list: [
                         {
                             label: '全部',
@@ -159,6 +162,7 @@ export default {
                     ]
                 }, {
                     title: '价格',
+                    name: 'price',
                     list: [
                         {
                             label: '全部',

@@ -5,78 +5,56 @@
        <div class="main">
 
             <div v-if="activeTab==0">
-
-                <div class="page-loadmore-wrapper" ref="wrapper1" :style="{ height: wrapperHeight1 + 'px' }">
-                    <mt-loadmore :bottom-method="loadBottom" @bottom-status-change="handleBottomChange" :bottom-all-loaded="allLoaded1" ref="loadmore1">
-                        
-                        <div class="card list" v-for="(item,i) in teachersList" :key="i">
-                            <div class="flex_box img_info">
-                                <div class="header_wrap ft">
-                                    <img src="../../assets/images/header.jpg" alt="" class="header">
-                                    <img src="../../assets/images/xinshang@2x.png" alt="" class="label" v-if="item.isNew">
-                                    <img src="../../assets/images/renqi@2x.png" alt="" class="label" v-if="item.isHot">
-                                </div>
-                                <div class="bd">
-                                    <p class="name">{{item.teacher}} 老师</p>
-                                    <p class="text_dis">{{item.introduce}}</p>
-                                </div>
+                <div class="page-loadmore-wrapper" ref="wrapper1" id="scrollWrap1">
+                    <div class="card list" v-for="(item,i) in teachersList" :key="i">
+                        <div class="flex_box img_info">
+                            <div class="header_wrap ft">
+                                <img src="../../assets/images/header.jpg" alt="" class="header">
+                                <img src="../../assets/images/xinshang@2x.png" alt="" class="label" v-if="item.isNew">
+                                <img src="../../assets/images/renqi@2x.png" alt="" class="label" v-if="item.isHot">
                             </div>
-                            <div class="action_area flex_box">
-                                <p class="text_dis bd">已授课{{item.timeLong}} | {{item.studentNum}}人次</p>
-                                <button class="btn plain_red ft" @click="$router.push('yuyue')">立即预约</button>
+                            <div class="bd">
+                                <p class="name">{{item.teacher}} 老师</p>
+                                <p class="text_dis">{{item.introduce}}</p>
                             </div>
-                            <div class="tag" v-if="item.isFull">今日已约满</div>
                         </div>
-
-                        <div slot="bottom" class="mint-loadmore-bottom">
-                            <span v-show="bottomStatus1 !== 'loading'" :class="{ 'is-rotate': bottomStatus1 === 'drop' }">↑</span>
-                            <span v-show="bottomStatus1 === 'loading'">
-                                <mt-spinner type="snake"></mt-spinner>
-                            </span>
+                        <div class="action_area flex_box">
+                            <p class="text_dis bd">已授课{{item.timeLong}} | {{item.studentNum}}人次</p>
+                            <button class="btn plain_red ft" @click="$router.push('yuyue')">立即预约</button>
                         </div>
-                    </mt-loadmore>
+                        <div class="tag" v-if="item.isFull">今日已约满</div>
+                    </div>
                 </div>
-
-                
             </div>
 
             <div v-if="activeTab==1">
-                <div class="page-loadmore-wrapper" ref="wrapper2" :style="{ height: wrapperHeight2 + 'px' }">
-                    <mt-loadmore :bottom-method="loadBottom" @bottom-status-change="handleBottomChange" :bottom-all-loaded="allLoaded2" ref="loadmore2">
-                        <div class="my_list" v-for="(item,i) in myClassList" :key="i">
-                            <div class="flex_box list_tt">
-                                <img src="../../assets/images/icon_zcsk@2x.png" alt="" v-if="item.status==='1'"/>
-                                <img src="../../assets/images/icon_wks@2x.png" alt="" v-else-if="item.status==='0'"/>
-                                <img src="../../assets/images/icon_yjs@2x.png" alt="" v-else-if="item.status==='2'"/>
-                                {{classStatusMap[item.status]}}
-                                <span class="num" v-if="item.num">{{item.num}}</span>
+                <div class="page-loadmore-wrapper" ref="wrapper2" id="scrollWrap2">
+                    <div class="my_list" v-for="(item,i) in myClassList" :key="i">
+                        <div class="flex_box list_tt">
+                            <img src="../../assets/images/icon_zcsk@2x.png" alt="" v-if="item.status==='1'"/>
+                            <img src="../../assets/images/icon_wks@2x.png" alt="" v-else-if="item.status==='0'"/>
+                            <img src="../../assets/images/icon_yjs@2x.png" alt="" v-else-if="item.status==='2'"/>
+                            {{classStatusMap[item.status]}}
+                            <span class="num" v-if="item.num">{{item.num}}</span>
+                        </div>
+                        <div class="card list_type flex_box" >
+                            <div class="bd">
+                                <div class="flex_box img_info">
+                                    <img :src="item.header" alt="" class="header">
+                                    <p class="name">{{item.teacher}} 老师</p>
+                                </div>
+                                <p class="color_shadow calender_icon">
+                                    <img src="../../assets/images/rili_big@2x.png" alt="" class="icon">
+                                    {{item.time}}
+                                </p>
                             </div>
-                            <div class="card list_type flex_box" >
-                                <div class="bd">
-                                    <div class="flex_box img_info">
-                                        <img :src="item.header" alt="" class="header">
-                                        <p class="name">{{item.teacher}} 老师</p>
-                                    </div>
-                                    <p class="color_shadow calender_icon">
-                                        <img src="../../assets/images/rili_big@2x.png" alt="" class="icon">
-                                        {{item.time}}
-                                    </p>
-                                </div>
-                                <div class="ft">
-                                    <img src="../../assets/images/btn_ckhf@2x.png" alt="" v-if="item.status==='2'" class="action_icon"/>
-                                    <img src="../../assets/images/btn_jrjs@2x.png" class="action_icon" alt="" v-else/>
-                                    {{item.status==='2' ? '进入教室' : '查看回放'}}
-                                </div>
+                            <div class="ft">
+                                <img src="../../assets/images/btn_ckhf@2x.png" alt="" v-if="item.status==='2'" class="action_icon"/>
+                                <img src="../../assets/images/btn_jrjs@2x.png" class="action_icon" alt="" v-else/>
+                                {{item.status==='2' ? '进入教室' : '查看回放'}}
                             </div>
                         </div>
-
-                        <div slot="bottom" class="mint-loadmore-bottom">
-                            <span v-show="bottomStatus2 !== 'loading'" :class="{ 'is-rotate': bottomStatus2 === 'drop' }">↑</span>
-                            <span v-show="bottomStatus2 === 'loading'">
-                                <mt-spinner type="snake"></mt-spinner>
-                            </span>
-                        </div>
-                    </mt-loadmore>
+                    </div>
                 </div>
 
                 
@@ -93,12 +71,12 @@ export default {
     name: 'test',
     data() {
         return {
-            wrapperHeight1: 0,
-            allLoaded1: false,
-            bottomStatus1: '',
-            wrapperHeight2: 0,
-            allLoaded2: false,
-            bottomStatus2: '',
+            scrollWrap1: null,
+            scrollWrap2: null,
+            curPage: 1,
+            totalPage: 5,
+            isQuering: false,
+
 
             tabList: [
                 {
@@ -112,6 +90,42 @@ export default {
             activeTab: 0,
             teachersList: [
                 {
+                    teacher: '汪涛',
+                    header: require('../../assets/images/header.jpg'),
+                    introduce: '有功无过是短暂的，无功有过是行不通的，有功有过是最好的',
+                    timeLong: '20小时',
+                    studentNum: '2340',
+                    isFull: true,
+                    isNew: true,
+                },
+                {
+                    teacher: '汪涛',
+                    header: require('../../assets/images/header.jpg'),
+                    introduce: '有功无过是短暂的，无功有过是行不通的，有功有过是最好的',
+                    timeLong: '20小时',
+                    studentNum: '2340',
+                    isFull: false,
+                    isNew: false,
+                    isHot: true
+                }, {
+                    teacher: '汪涛',
+                    header: require('../../assets/images/header.jpg'),
+                    introduce: '有功无过是短暂的，无功有过是行不通的，有功有过是最好的',
+                    timeLong: '20小时',
+                    studentNum: '2340',
+                    isFull: true,
+                    isNew: true,
+                },
+                {
+                    teacher: '汪涛',
+                    header: require('../../assets/images/header.jpg'),
+                    introduce: '有功无过是短暂的，无功有过是行不通的，有功有过是最好的',
+                    timeLong: '20小时',
+                    studentNum: '2340',
+                    isFull: false,
+                    isNew: false,
+                    isHot: true
+                }, {
                     teacher: '汪涛',
                     header: require('../../assets/images/header.jpg'),
                     introduce: '有功无过是短暂的，无功有过是行不通的，有功有过是最好的',
@@ -149,6 +163,40 @@ export default {
                     num: '2',
                     time: '2020年8月1日 17:00-18:00',
                     header: require('../../assets/images/header.jpg')
+                }, {
+                    status: '1',
+                    teacher: '汪涛',
+                    time: '2020年8月1日 17:00-18:00',
+                    header: require('../../assets/images/header.jpg')
+                }, {
+                    status: '0',
+                    teacher: '汪涛',
+                    num: '1',
+                    time: '2020年8月1日 17:00-18:00',
+                    header: require('../../assets/images/header.jpg')
+                }, {
+                    status: '2',
+                    teacher: '汪涛',
+                    num: '2',
+                    time: '2020年8月1日 17:00-18:00',
+                    header: require('../../assets/images/header.jpg')
+                }, {
+                    status: '1',
+                    teacher: '汪涛',
+                    time: '2020年8月1日 17:00-18:00',
+                    header: require('../../assets/images/header.jpg')
+                }, {
+                    status: '0',
+                    teacher: '汪涛',
+                    num: '1',
+                    time: '2020年8月1日 17:00-18:00',
+                    header: require('../../assets/images/header.jpg')
+                }, {
+                    status: '2',
+                    teacher: '汪涛',
+                    num: '2',
+                    time: '2020年8月1日 17:00-18:00',
+                    header: require('../../assets/images/header.jpg')
                 }
             ]
         }
@@ -167,68 +215,47 @@ export default {
 
     },
     mounted() {
-        console.log(121212 , this.$refs)
-      this.wrapperHeight1 = document.documentElement.clientHeight - this.$refs.wrapper1.getBoundingClientRect().top;
-      
-      
+      this.scrollWrap1 = document.getElementById('scrollWrap1');
+      this.scrollWrap2 = document.getElementById('scrollWrap2');
+      this.scrollWrap1 && this.scrollWrap1.addEventListener('scroll',this.queryNextData1);
+      this.scrollWrap2 && this.scrollWrap2.addEventListener('scroll',this.queryNextData2);
+    },
+    beforeDestroy() {
+        this.scrollWrap1 && this.scrollWrap1.removeEventListener('scroll',this.queryNextData1);
+        this.scrollWrap2 && this.scrollWrap2.removeEventListener('scroll',this.queryNextData2);
     },
     methods: {
+        queryNextData1() {
+            let dom = this.scrollWrap1;
+            if( (this.curPage < this.totalPage) && !this.isQuering) {
+                // 当快滚动到底部到时候请求下一页数据
+                if(dom.scrollHeight - dom.clientHeight - dom.scrollTop < 10) {
+                    this.isQuering = true;
+                    console.log('在这里发送请求下一页数据：', dom.scrollTop, dom.clientHeight);
+                    setTimeout(()=>{
+                        this.isQuering = false;
+                    }, 1500)
+                }
+            }
+        },
+        queryNextData2() {
+            let dom = this.scrollWrap2;
+            if( (this.curPage < this.totalPage) && !this.isQuering) {
+                // 当快滚动到底部到时候请求下一页数据
+                if(dom.scrollHeight - dom.clientHeight - dom.scrollTop < 10) {
+                    this.isQuering = true;
+                    console.log('在这里发送请求下一页数据：', dom.scrollTop, dom.clientHeight);
+                    setTimeout(()=>{
+                        this.isQuering = false;
+                    }, 1500)
+                }
+            }
+        },
        changeTab(index) {
-            this.activeTab = index
-            setTimeout(()=>{
-                if(index==0) {
-                    this.wrapperHeight1 = document.documentElement.clientHeight - this.$refs.wrapper1.getBoundingClientRect().top;
-                } else {
-                    this.wrapperHeight2 = document.documentElement.clientHeight - this.$refs.wrapper2.getBoundingClientRect().top;
-                }
-            },0)
+            this.activeTab = index;
         },
-        
-        handleBottomChange(status) {
-            this.bottomStatus = status;
-        },
-        loadBottom() {
-            
-             const {listName, loadmoreName, wrapperHeight,allLoaded, bottomStatus } = {
-                 '0': {
-                     listName: 'teachersList',
-                     loadmoreName: 'loadmore1',
-                     wrapperHeight: 'wrapperHeight1',
-                     allLoaded: 'allLoaded1',
-                     bottomStatus: 'bottomStatus1'
-                 },
-                 '1': {
-                     listName: 'myClassList',
-                     loadmoreName: 'loadmore2',
-                     wrapperHeight: 'wrapperHeight2',
-                     allLoaded: 'allLoaded2',
-                     bottomStatus: 'bottomStatus2'
-                 }
-             }[this.activeTab+'']
-
-            setTimeout(() => {
-                let lastValue = this[listName].length;
-                if (lastValue < 20) {
-                    for (let i = 1; i <= 10; i++) {
-                        this[listName].push({
-                            teacher: '汪涛'+i,
-                            header: require('../../assets/images/header.jpg'),
-                            introduce: '有功无过是短暂的，无功有过是行不通的，有功有过是最好的',
-                            timeLong: '20小时',
-                            studentNum: '2340',
-                            isFull: false,
-                            isNew: false,
-                            isHot: true
-                        });
-                    }
-                } else {
-                    this[allLoaded] = true;
-                }
-                console.log(9999, this[listName])
-                this.$refs[loadmoreName].onBottomLoaded();
-            }, 1500);
-        }
     },
+    
     components: {Tabs, mtLoadmore:Loadmore}
 }
 </script>
@@ -236,10 +263,18 @@ export default {
 <style lang="less" scoped>
     .page_wrap{
         overflow: initial;
+        padding-bottom: 0;
+        max-height: 100vh;
     }
     .main{
-        margin-top: 12px;
+        padding-top: 12px;
         overflow: scroll;
+        .page-loadmore-wrapper{
+            box-sizing: border-box;
+            height: calc(100vh - 38px - 70px);
+            padding-bottom: 34px;
+            overflow: scroll;
+        }
     }
     .my_list{
         margin-bottom: 24px;
