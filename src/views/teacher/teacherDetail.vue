@@ -236,7 +236,7 @@ export default {
         .top_card{
             padding: 24px 24px 42px;
             height: 113px;
-            background: #1B226E url('../../assets/images/lsxqbg@2x.png') center no-repeat;
+            background: #1B226E url('static/images/lsxqbg@2x.png') center no-repeat;
             background-size: 100%;
             color: #fff;
             .header{

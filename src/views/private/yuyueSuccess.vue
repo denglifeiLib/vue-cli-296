@@ -84,7 +84,7 @@ export default {
         .top{
             padding: 78px 60px 0;
             height:472px;
-            background: url('../../assets/images/yycg_bg@2x.png') top center no-repeat;
+            background: url('static/images/yycg_bg@2x.png') top center no-repeat;
             background-size: 100% auto;
             text-align: center;
             .suc_img{

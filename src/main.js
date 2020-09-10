@@ -7,7 +7,7 @@ import request from './utils/request.js';
 import * as filters from "@/utils/filters.js"
 import Mint from 'mint-ui';
 import 'mint-ui/lib/style.css';
-import  './assets/css/reset.css';
+import  './assets/css/reset.less';
 import { Calendar } from 'vant';
 Vue.use(Calendar);
 

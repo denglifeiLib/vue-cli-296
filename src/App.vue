@@ -168,6 +168,7 @@ export default {
 </script>
 <style lang="less">
 // @import './assets/css/reset.less'
+html,body{font-size: 12px;}
 .nav_bar + .child-view{
     padding-bottom: 56px;/*no*/
 }
@@ -406,7 +407,7 @@ export default {
     &.calender_icon .icon{
         width: 14px;
         height: 14px;
-        background: url('./assets/images/rili_big@2x.png') center no-repeat;
+        background: url('static/images/rili_big@2x.png') center no-repeat;
         background-size: 100% 100%;
     }
 }

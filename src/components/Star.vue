@@ -78,13 +78,13 @@
         background-size: 100%;
         &:last-child{margin-right: 0;}
         &.on{
-            background-image: url("../assets/images/xin_s@2x.png");
+            background-image: url("static/images//xin_s@2x.png");
         }
         &.half{
-            background-image: url("../assets/images/xin_s@2x.png");
+            background-image: url("static/images//xin_s@2x.png");
         }
         &.off {
-            background-image: url("../assets/images/xin_n@2x.png");
+            background-image: url("static/images//xin_n@2x.png");
         }  
 
         &.small {

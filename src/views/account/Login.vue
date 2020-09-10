@@ -38,7 +38,7 @@ export default {
 <style lang="less">
 .login_page{
     min-height: 100vh;
-    background: url('../../assets/images/login_bg@2x.png');
+    background: url('static/images/login_bg@2x.png');
     background-size: contain;
     padding: 135px 30px 0;
     .hello{

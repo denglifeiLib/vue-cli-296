@@ -113,7 +113,7 @@ export default {
         padding-left: 24px;
         padding-right: 30px;
         height: 115px;
-        background: url('../../assets/images/xq_topbg@2x.png') center no-repeat;
+        background: url('static/images/xq_topbg@2x.png') center no-repeat;
         background-size: 100%;
         .tt{
             font-size:20px;

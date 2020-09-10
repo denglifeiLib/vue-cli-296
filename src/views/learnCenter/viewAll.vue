@@ -268,7 +268,7 @@ export default {
                 margin-right: -12px;
                 height: 40px;
                 padding: 0 16px 0 12px;
-                background: url('../../assets/images/zzzbbg@2x.png');
+                background: url('static/images/zzzbbg@2x.png');
                 background-size: 100%;
                 .icon{
                     width: 20px;
