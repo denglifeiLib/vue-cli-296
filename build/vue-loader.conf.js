@@ -21,6 +21,6 @@ module.exports = {
     image: 'xlink:href'
   },
   postcss: function() {
-    return [px2rem({remUnit: 1})];
+    return [px2rem({remUnit: 100})];
   }
 }
