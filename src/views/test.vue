@@ -1,5 +1,13 @@
 <template>
     <div>
+        <h1 @click="popInfo.show=true">点击弹出n班主任二维码</h1>
+        <!-- 班主任二维码 -->
+        <PopMasterEwm :popInfo="popInfo"/>
+        <!-- 班级群 -->
+        <PopQun @hide="showQunPop=false" v-if="showQunPop" @handlClick="handlClickQunPop()"/>
+    
+        <br>
+
         <h1 @click="query">点击发送请求</h1>
         <hr>
 
@@ -80,11 +88,18 @@ import PopCalender from '@/components/PopCalender';
 import TimePicker from '@/components/TimePicker';
 import Tabs from '@/components/Tabs';
 import PopBindPhone from '@/components/PopBindPhone';
+import PopMasterEwm from '@/components/PopMasterEwm';
+import PopQun from '@/components/PopQun';
 
 export default {
     name: 'test',
     data() {
         return {
+            popInfo: {
+                show: true,
+            },
+            showQunPop: true,
+
             bindPhonePop:false,
             score: 5,
             ActiveDay: '2020-08-25',
@@ -153,9 +168,12 @@ export default {
 
         changeType(type) {
             console.log('changeType----', type)
-        }
+        },
+        handlClickQunPop() {
+            console.log('handlClickQunPop----')
+        },
     },
-    components: {Star, Weeks, Calender, PopCalender, TimePicker, Tabs, PopBindPhone}
+    components: {Star, Weeks, Calender, PopCalender, TimePicker, Tabs, PopBindPhone, PopMasterEwm, PopQun}
 }
 </script>
 

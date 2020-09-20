@@ -206,6 +206,33 @@ export default new Router({
                     component: () => import('./views/detail/livingDetailComment.vue'),
                 }
             ]
+        },{
+            path: '/living_detail_shu',// 用户端-录播课程详情
+            // name: 'living_detail',
+            component: () => import('./views/detail/livingDetail_shu.vue'),
+            children: [
+                {
+                    path: '',
+                    redirect: 'class'
+                },
+                {
+                    path: 'class',
+                    name: 'living_detail_class',
+                    component: () => import('./views/detail/livingDetailClass.vue'),
+                }, {
+                    path: 'menue',
+                    name: 'living_detail_menue',
+                    component: () => import('./views/detail/livingDetailMenu.vue'),
+                }, {
+                    path: 'introduce',
+                    name: 'living_detail_introduce',
+                    component: () => import('./views/detail/livingDetailIntroduce.vue'),
+                }, {
+                    path: 'comment',
+                    name: 'living_detail_comment',
+                    component: () => import('./views/detail/livingDetailComment.vue'),
+                }
+            ]
         }, {
             path: '/login',// 用户端-加载失败
             name: 'login',
