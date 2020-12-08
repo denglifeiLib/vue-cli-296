@@ -7,7 +7,7 @@
 
         <div class="out_teacher_box">
             <div class="teacher_box flex_box">
-                <img src="../../assets/images/default1.jpg" alt="" class="header bd">
+                <img src="../../assets/images/default1.jpg" alt="" class="header hd">
                 <div class="bd white"><span class="f13">lulu 老师</span><br><span class="f11">12324 观看</span></div>
                 <button class="btn white ft">关注</button>
             </div>
@@ -15,7 +15,7 @@
 
        <div class="living_hook" :class="{with_yuyue_bar: showYuyueBar}"></div>
 
-        <mt-popup v-model="showDetail" position="bottom" class="mint-popup common_pop_wrap">
+        <mt-popup :modal="false" v-model="showDetail" position="bottom" class="mint-popup common_pop_wrap">
             <div class="detail_pop">
                 <img src="../../assets/images/xiangq_close@2x.png" alt="" class="close" @click="showDetail=false">
                 <tabs :list="tabList" :active="activeTab" @change="changeTab"></tabs>

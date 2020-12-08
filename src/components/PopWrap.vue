@@ -1,5 +1,5 @@
 <template>
-    <mt-popup v-model="popupVisible" position="bottom" class="mint-popup common_pop_wrap">
+    <mt-popup v-model="popupVisible" :modal="false" position="bottom" class="mint-popup common_pop_wrap">
         <div class="pop_wrap">
             <div class="pop_box">
                 <img src="../assets/images/close.png" alt="" class="close" @click="close()" v-if="showClose">
@@ -56,51 +56,54 @@ export default({
 .common_pop_wrap {
     width: 100%;
     height: 100vh;
-    background-color: rgba(0,0,0,.7);
+    // background-color: rgba(0,0,0,.7);
+    background: transparent;
     backface-visibility: hidden;
-    .pop_wrap{
+    > .pop_wrap{
         position: relative;
         height: 100vh;
         width: 375px;
+        background-color: rgba(0,0,0,.7);
+        >.pop_box{
+            position: absolute;
+            background: #fff;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 375px;
+            border-radius:12px 12px 0px 0px;
+            .close{
+                position: absolute;
+                width: 14px;
+                height: 14px;
+                right: 18px;
+                top: 14px;
+            }
+            .skip{
+                position: absolute;
+                height: 24px;
+                left: 18px;
+                top: 14px;
+                font-size:13px;
+                font-family:PingFangSC-Medium,PingFang SC;
+                font-weight:500;
+                color:rgba(148,155,165,1);
+            }
+            .pop_tt{
+                padding: 10px;
+                font-size:16px;
+                font-family:PingFangSC-Medium,PingFang SC;
+                font-weight:500;
+                text-align: center;
+                color:rgba(18,23,50,1);
+            }
+            .cont{
+                padding: 20px 24px 40px;
+            }
+        }
     }
 
-    .pop_box{
-        position: absolute;
-        background: #fff;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        width: 375px;
-        border-radius:12px 12px 0px 0px;
-        .close{
-            position: absolute;
-            width: 14px;
-            height: 14px;
-            right: 18px;
-            top: 14px;
-        }
-        .skip{
-            position: absolute;
-            height: 24px;
-            left: 18px;
-            top: 14px;
-            font-size:13px;
-            font-family:PingFangSC-Medium,PingFang SC;
-            font-weight:500;
-            color:rgba(148,155,165,1);
-        }
-        .pop_tt{
-            padding: 10px;
-            font-size:16px;
-            font-family:PingFangSC-Medium,PingFang SC;
-            font-weight:500;
-            text-align: center;
-            color:rgba(18,23,50,1);
-        }
-        .cont{
-            padding: 20px 24px 40px;
-        }
-    }
+    
 }
 
 
